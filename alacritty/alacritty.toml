@@ -1,0 +1,7 @@
+import = [
+  "~/.config/alacritty/colorthemes/everforest.toml"
+]
+
+[font]
+normal = { family = "MesloLGL Nerd Font"}
+size = 10
