@@ -1,6 +1,9 @@
 import = [
-  "~/.config/alacritty/colorthemes/everforest.toml"
+  "~/.config/alacritty/colorthemes/gruvbox-material-medium-dark.toml"
 ]
+
+[window]
+opacity = 0.83
 
 [font]
 normal = { family = "MesloLGL Nerd Font"}
