@@ -1,5 +1,5 @@
 import = [
-  "~/.config/alacritty/colorthemes/gruvbox-material-medium-dark.toml"
+  "~/.config/alacritty/colorthemes/nord-theme.toml"
 ]
 
 [window]
