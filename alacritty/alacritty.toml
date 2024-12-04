@@ -1,10 +1,11 @@
-import = [
-  "~/.config/alacritty/colorthemes/nord-theme.toml"
-]
-
 [window]
-opacity = 0.83
+opacity = 1
 
 [font]
 normal = { family = "MesloLGL Nerd Font"}
-size = 10
+size = 14
+
+[general]
+import = [
+  "~/.config/alacritty/colorthemes/nord-theme.toml"
+]
