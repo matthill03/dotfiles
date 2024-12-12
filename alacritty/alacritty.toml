@@ -2,10 +2,10 @@
 opacity = 1
 
 [font]
-normal = { family = "MesloLGL Nerd Font"}
+normal = { family = "Rec Mono Duotone Nerd Font"}
 size = 14
 
 [general]
 import = [
-  "~/.config/alacritty/colorthemes/nord-theme.toml"
+  "~/.config/alacritty/colorthemes/kanagawa.toml"
 ]

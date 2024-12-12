@@ -8,7 +8,6 @@ return { -- Highlight, edit, and navigate code
 			"bash",
 			"c",
 			"diff",
-			"html",
 			"lua",
 			"luadoc",
 			"markdown",

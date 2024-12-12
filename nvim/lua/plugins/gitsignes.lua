@@ -14,3 +14,4 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		},
 	},
 }
+
