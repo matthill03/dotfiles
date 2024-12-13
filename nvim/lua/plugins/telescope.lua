@@ -25,10 +25,12 @@ return {
                 file_browser = {
                     theme = "ivy",
                     hijack_netrw = true,
-                }
+                },
+                fzf = {},
             }
         }
         require("telescope").load_extension("file_browser");
+        require("telescope").load_extension("fzf");
 
         vim.keymap.set("n", "\\", require("telescope").extensions.file_browser.file_browser, { desc = "[F]ile [B]rowser" })
 
