@@ -1,9 +1,11 @@
 font-family = "Rec Mono Duotone Nerd Font"
 theme = "Kanagawa Wave"
-window-decoration = false
+# window-decoration = false
 
 keybind = ctrl+d=new_split:right
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+l=goto_split:right
-keybind = ctrl+k=goto_split:top
-keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+shift+d=new_split:down
+
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+l=goto_split:right
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+j=goto_split:bottom
