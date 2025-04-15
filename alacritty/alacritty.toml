@@ -7,5 +7,5 @@ size = 14
 
 [general]
 import = [
-  "~/.config/alacritty/colorthemes/kanagawa.toml"
+  "~/.config/alacritty/colorthemes/gruvbox-material-medium-dark.toml"
 ]
