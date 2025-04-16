@@ -2,7 +2,7 @@
 opacity = 1
 
 [font]
-normal = { family = "Rec Mono Duotone Nerd Font"}
+normal = { family = "RecMonoDuotone Nerd Font"}
 size = 14
 
 [general]
