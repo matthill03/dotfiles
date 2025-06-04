@@ -23,31 +23,9 @@ return {
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 			{ "j-hui/fidget.nvim"},
 
-			"saghen/blink.cmp",
+			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
-			require("mason").setup()
-
-            -- Enable the following language servers
-            -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-            local servers = { 'clangd', 'rust_analyzer', 'pyright', 'zls', 'lua_ls', 'cmake', 'ols'  }
-
-            -- Ensure the servers above are installed
-            require('mason-lspconfig').setup {
-                ensure_installed = servers,
-            }
-
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-            local lspconfig = require('lspconfig')
-            for _, lsp in pairs(servers) do
-                if (lsp == 'clangd') then
-                    lspconfig[lsp].setup({ capabilities = capabilities, opts =  {cmd = {"clangd", "--header-insertion=never"}}})
-                end
-                lspconfig[lsp].setup({ capabilities = capabilities })
-            end
-
-            require('fidget').setup({});
-
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
@@ -102,6 +80,30 @@ return {
 					end
 				end,
 			})
+
+			require("mason").setup()
+
+            -- Enable the following language servers
+            -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
+            local servers = { 'clangd', 'rust_analyzer', 'pyright', 'zls', 'ols'  }
+
+            -- Ensure the servers above are installed
+            require('mason-lspconfig').setup {
+                ensure_installed = servers,
+            }
+
+            -- nvim-cmp supports additional completion capabilities
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+            for _, lsp in ipairs(servers) do
+                require('lspconfig')[lsp].setup {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                }
+            end
+
+            require('fidget').setup({});
 
 		end,
 	},
