@@ -32,8 +32,6 @@ return {
         require("telescope").load_extension("file_browser");
         require("telescope").load_extension("fzf");
 
-        vim.keymap.set("n", "\\", require("telescope").extensions.file_browser.file_browser, { desc = "[F]ile [B]rowser" })
-
         -- See `:help telescope.builtin`
         vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
         vim.keymap.set('n', '<leader>/', function()
