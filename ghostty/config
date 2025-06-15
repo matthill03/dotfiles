@@ -1,5 +1,5 @@
 font-family = "Rec Mono Duotone Nerd Font"
-theme = "GruvboxDark"
+theme = "nord"
 # window-decoration = false
 
 keybind = ctrl+d=new_split:right
