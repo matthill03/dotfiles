@@ -1,28 +1,37 @@
 return {
-    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        config = function()
+            require("nvim-dap-virtual-text").setup()
+        end,
+    },
     {
         "mfussenegger/nvim-dap",
         config = function()
             local dap = require("dap")
 
-            local dapview = require("dapui")
-            dapview.setup()
+            vim.keymap.set("n", "<leader>dc", dap.continue, {})
+            vim.keymap.set("n", "<leader>do", dap.step_over, {})
+            vim.keymap.set("n", "<leader>di", dap.step_into, {})
+            vim.keymap.set("n", "<leader>du", dap.step_out, {})
+            vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint, {})
+            vim.keymap.set("n", "<Leader>dr", dap.repl.open, {})
+            vim.keymap.set("n", "<Leader>dl", dap.run_last, {})
 
-            dap.listeners.before.attach.dapui_config = function()
-                dapview.open()
-            end
-            dap.listeners.before.launch.dapui_config = function()
-                dapview.open()
-            end
-            dap.listeners.before.event_terminated.dapui_config = function()
-                dapview.close()
-            end
-            dap.listeners.before.event_exited.dapui_config = function()
-                dapview.close()
-            end
-
-            vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, {})
-            vim.keymap.set("n", "<Leader>dc", dap.continue, {})
+            vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
+                require("dap.ui.widgets").hover()
+            end)
+            vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
+                require("dap.ui.widgets").preview()
+            end)
+            vim.keymap.set("n", "<Leader>df", function()
+                local widgets = require("dap.ui.widgets")
+                widgets.centered_float(widgets.frames)
+            end)
+            vim.keymap.set("n", "<Leader>ds", function()
+                local widgets = require("dap.ui.widgets")
+                widgets.centered_float(widgets.scopes)
+            end)
 
             dap.adapters.lldb = {
                 type = "executable",
