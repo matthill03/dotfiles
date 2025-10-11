@@ -1,4 +1,5 @@
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('zls')
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
