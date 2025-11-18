@@ -8,10 +8,11 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", {})
 
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+local snacks = require('snacks')
+vim.keymap.set('n', '<leader>sf', snacks.picker.files, { desc = 'Pick file' })
+vim.keymap.set('n', '<leader>sb', snacks.picker.buffers, { desc = 'Pick Open Buffers' })
+
+vim.keymap.set('n', '<leader>gg', snacks.picker.grep, { desc = 'Grep' })
+vim.keymap.set('n', '<leader>gw', snacks.picker.grep_word, { desc = 'Grep Current Word' })
 
 vim.keymap.set('n', '\\', "<cmd>Oil<cr>", { desc = 'Open Oil file manager' })
