@@ -12,7 +12,7 @@ local snacks = require('snacks')
 vim.keymap.set('n', '<leader>sf', snacks.picker.files, { desc = 'Pick file' })
 vim.keymap.set('n', '<leader>sb', snacks.picker.buffers, { desc = 'Pick Open Buffers' })
 
-vim.keymap.set('n', '<leader>gg', snacks.picker.grep, { desc = 'Grep' })
-vim.keymap.set('n', '<leader>gw', snacks.picker.grep_word, { desc = 'Grep Current Word' })
+vim.keymap.set('n', '<leader>sg', snacks.picker.grep, { desc = 'Grep' })
+vim.keymap.set('n', '<leader>sgw', snacks.picker.grep_word, { desc = 'Grep Current Word' })
 
 vim.keymap.set('n', '\\', "<cmd>Oil<cr>", { desc = 'Open Oil file manager' })
