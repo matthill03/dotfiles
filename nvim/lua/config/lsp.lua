@@ -1,4 +1,4 @@
-vim.lsp.enable({'lua_ls', 'zls'})
+vim.lsp.enable({'lua_ls', 'zls', 'ts_ls', 'pyright'})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
