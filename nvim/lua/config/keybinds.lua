@@ -1,10 +1,18 @@
 vim.keymap.set("i", "jk", "<ESC>", {})
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", {})
 
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", {})
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", {})
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", {})
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", {})
+local function smart_move(direction, tmux_cmd)
+    local curwin = vim.api.nvim_get_current_win()
+    vim.cmd('wincmd ' .. direction)
+    if curwin == vim.api.nvim_get_current_win() then
+        vim.fn.system('tmux select-pane ' .. tmux_cmd)
+    end
+end
+
+vim.keymap.set("n", "<C-h>", function() smart_move('h', '-L') end, {})
+vim.keymap.set("n", "<C-j>", function() smart_move('h', '-D') end, {})
+vim.keymap.set("n", "<C-k>", function() smart_move('h', '-U') end, {})
+vim.keymap.set("n", "<C-l>", function() smart_move('h', '-R') end, {})
 
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
