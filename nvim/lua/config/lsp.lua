@@ -1,4 +1,4 @@
-vim.lsp.enable({'lua_ls', 'zls', 'ts_ls', 'pyright'})
+vim.lsp.enable({'lua_ls', 'zls', 'pyright'})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -8,8 +8,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
             -- Optional: trigger autocompletion on EVERY keypress. May be slow!
             -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
             -- client.server_capabilities.completionProvider.triggerCharacters = chars
+            vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
         end
     end,
 })
-vim.cmd [[set completeopt+=menuone,noselect,popup]]
+
+vim.diagnostic.config({
+    virtual_lins = true
+})
