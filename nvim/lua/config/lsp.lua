@@ -1,17 +1,34 @@
-vim.lsp.enable({'lua_ls', 'zls', 'pyright'})
+vim.lsp.enable({'lua_ls', 'zls'})
 
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('my.lsp', {}),
-    callback = function(args)
-        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-        if client:supports_method('textDocument/completion') then
-            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-            -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-            -- client.server_capabilities.completionProvider.triggerCharacters = chars
-            vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
-            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-        end
-    end,
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
+      -- Optional formating of items
+      convert = function(item)
+        -- Remove leading misc chars for abbr name,
+        -- and cap field to 25 chars
+        --local abbr = item.label
+        --abbr = abbr:match("[%w_.]+.*") or abbr
+        --abbr = #abbr > 25 and abbr:sub(1, 24) .. "…" or abbr
+        --
+        -- Remove return value
+        --local menu = ""
+
+        -- Only show abbr name, remove leading misc chars (bullets etc.),
+        -- and cap field to 15 chars
+        local abbr = item.label
+        abbr = abbr:gsub("%b()", ""):gsub("%b{}", "")
+        abbr = abbr:match("[%w_.]+.*") or abbr
+        abbr = #abbr > 15 and abbr:sub(1, 14) .. "…" or abbr
+
+        -- Cap return value field to 15 chars
+        local menu = item.detail or ""
+        menu = #menu > 15 and menu:sub(1, 14) .. "…" or menu
+
+        return { abbr = abbr, menu = menu }
+      end,
+    })
+  end,
 })
 
 vim.diagnostic.config({
